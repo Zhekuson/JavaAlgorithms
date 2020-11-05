@@ -24,10 +24,46 @@ public class MergeSort {
         int[] array = new int[length];
         generateArray(array);
         print(array);
-        mergeSort(array,0, length - 1);
-
+        array = mergeSort(array,0, length - 1);
+        print(array);
     }
     public static int[] mergeSort(int[] arr, int left, int right){
-        return null;
+        if (right == left){
+            return new int[]{arr[left]};
+        }else{
+            int middle = (left + right) / 2;
+
+            int[] leftPart = mergeSort(arr, left, middle);
+            int[] rightPart = mergeSort(arr, middle + 1, right);
+            int[] result = new int[right-left+1];
+            int leftIndex = 0;
+            int rightIndex = 0;
+            int i = 0;
+            for (; i <= right-left; i++){
+                if (leftIndex < leftPart.length && rightIndex < rightPart.length) {
+                    if (leftPart[leftIndex] < rightPart[rightIndex]) {
+                        result[i] = leftPart[leftIndex];
+                        leftIndex++;
+                    } else {
+                        result[i] = rightPart[rightIndex];
+                        rightIndex++;
+                    }
+                }else{
+                    break;
+                }
+            }
+            if(leftIndex >= leftPart.length) {
+                for (; i <= right-left; i++) {
+                    result[i] = rightPart[rightIndex];
+                    rightIndex++;
+                }
+            }else{
+                for (; i <= right-left; i++) {
+                    result[i] = leftPart[leftIndex];
+                    leftIndex++;
+                }
+            }
+            return result;
+        }
     }
 }
