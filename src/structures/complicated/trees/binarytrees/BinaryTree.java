@@ -29,7 +29,15 @@ public class BinaryTree<T> implements Tree<T> {
     public void setRoot(BinaryTreeNode<T> root) {
         this.root = root;
     }
+    public void buildTree(){
 
+    }
+    public void buildTreeFromArray(T[] array){
+
+    }
+    private void buildTree(BinaryTreeNode root){
+
+    }
     //traversals
 
     public List<T> preOrderTraversal(){
